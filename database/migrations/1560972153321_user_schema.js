@@ -6,7 +6,7 @@ const Schema = use("Schema");
 class UserSchema extends Schema {
   up() {
     this.table("users", table => {
-      table.enu("role", ["admin", "client"]);
+      table.enu("role", ["admin", "client"]).defaultTo("client");
     });
   }
 
