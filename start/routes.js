@@ -17,4 +17,8 @@
 const Route = use('Route')
 
 Route.post('/user', 'UserController.store').validator('User')
-Route.post('/sessions', 'SessionController.store').validator('Session')
+Route.post('/session', 'SessionController.store').validator('Session')
+Route.get('/file/:id', 'FileController.show')
+Route.group(() => {
+  Route.post('/file', 'FileController.store').middleware('isAdmin')
+}).middleware('auth')
