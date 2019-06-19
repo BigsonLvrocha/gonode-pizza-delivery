@@ -17,3 +17,4 @@
 const Route = use('Route')
 
 Route.post('/user', 'UserController.store').validator('User')
+Route.post('/sessions', 'SessionController.store').validator('Session')
