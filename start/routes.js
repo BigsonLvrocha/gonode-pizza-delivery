@@ -21,4 +21,8 @@ Route.post('/session', 'SessionController.store').validator('Session')
 Route.get('/file/:id', 'FileController.show')
 Route.group(() => {
   Route.post('/file', 'FileController.store').middleware('isAdmin')
+  Route.resource('product', 'ProductController')
+    .apiOnly()
+    .middleware(new Map([[['store', 'update', 'destroy'], ['isAdmin']]]))
+    .validator(new Map([[['store', 'update'], ['Product']]]))
 }).middleware('auth')
