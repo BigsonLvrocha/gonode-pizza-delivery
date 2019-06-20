@@ -25,4 +25,13 @@ Route.group(() => {
     .apiOnly()
     .middleware(new Map([[['store', 'update', 'destroy'], ['isAdmin']]]))
     .validator(new Map([[['store', 'update'], ['Product']]]))
+  Route.resource('product.type', 'ProductTypeController')
+    .apiOnly()
+    .middleware(new Map([[['store', 'update', 'destroy'], ['isAdmin']]]))
+    .validator(
+      new Map([
+        [['store'], ['ProductType']],
+        [['update'], ['ProductTypeUpdate']]
+      ])
+    )
 }).middleware('auth')

@@ -7,6 +7,10 @@ class Product extends Model {
   file () {
     return this.belongsTo('App/Models/File')
   }
+
+  types () {
+    return this.hasMany('App/Models/ProductType')
+  }
 }
 
 module.exports = Product

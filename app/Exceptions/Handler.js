@@ -24,10 +24,19 @@ class ExceptionHandler extends BaseExceptionHandler {
    *
    * @return {void}
    */
-  async handle (error, { request, response }) {
+  async handle (error, { request, response, ...restArgs }) {
     switch (error.name) {
-      case 'ValidationError':
+      case 'ValidationException':
         return response.status(error.status).send(error.messages)
+      case 'ModelNotFoundException':
+        return response.status(error.status).send({
+          error: {
+            message:
+              "Looks like you are trying to do something to a thing that doesn't exists"
+          }
+        })
+      case 'UniqueViolationException':
+        return super.handle(error, { request, response, ...restArgs })
       default:
         if (Env.get('NODE_ENV') === 'development') {
           const youch = new Youch(error, request.request)
