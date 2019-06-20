@@ -16,6 +16,9 @@ class ProductType extends Model {
   file () {
     return this.belongsTo('App/Models/File')
   }
+  sizes () {
+    return this.hasMany('App/Models/ProductSize')
+  }
 }
 
 module.exports = ProductType

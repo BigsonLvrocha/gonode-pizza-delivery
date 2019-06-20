@@ -20,6 +20,10 @@ class File extends Model {
   productTypes () {
     return this.hasMany('App/Models/ProductType')
   }
+
+  productSizes () {
+    return this.hasMany('App/Models/ProductSize')
+  }
 }
 
 module.exports = File
