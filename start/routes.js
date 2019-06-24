@@ -28,12 +28,7 @@ Route.group(() => {
   Route.resource('product.type', 'ProductTypeController')
     .apiOnly()
     .middleware(new Map([[['store', 'update', 'destroy'], ['isAdmin']]]))
-    .validator(
-      new Map([
-        [['store'], ['ProductType']],
-        [['update'], ['ProductTypeUpdate']]
-      ])
-    )
+    .validator(new Map([[['store', 'update'], ['ProductType']]]))
   Route.resource('product.type.size', 'ProductSizeController')
     .apiOnly()
     .middleware(new Map([[['store', 'update', 'destroy'], ['isAdmin']]]))
