@@ -98,6 +98,7 @@ class OrderController {
   async update ({ params, request, response }) {
     const order = await Order.findOrFail(params.id)
     order.status = request.input('status')
+    await order.save()
     await Promise.all([order.load('sizes'), order.load('user')])
     return order
   }

@@ -17,6 +17,10 @@ class Order extends Model {
   static get deleteTimestamp () {
     return 'deleted_at'
   }
+
+  static get dates () {
+    return super.dates.concat(['deleted_at'])
+  }
 }
 
 module.exports = Order
