@@ -30,6 +30,26 @@ class CompoundValidationProvider extends ServiceProvider {
     }
   }
 
+  async idsExists (data, field, message, args, get) {
+    const ids = get(data, field)
+    const Database = use('Database')
+    if (!ids) {
+      return
+    }
+    if (!Array.isArray(ids)) {
+      return
+    }
+    const uniqueIds = [...new Set(ids)]
+    const table = args[0]
+    const idField = args[1] ? args[1] : 'id'
+    const rows = await Database.table(table)
+      .whereIn(idField, uniqueIds)
+      .getCount()
+    if (rows !== uniqueIds.length) {
+      throw message
+    }
+  }
+
   /**
    * Attach context getter when all providers have
    * been registered
@@ -42,6 +62,7 @@ class CompoundValidationProvider extends ServiceProvider {
     const Validator = use('Validator')
 
     Validator.extend('uniqueCompound', this._uniqueFn, 'Must be unique')
+    Validator.extend('idsExists', this.idsExists, 'all items must exist')
   }
 }
 

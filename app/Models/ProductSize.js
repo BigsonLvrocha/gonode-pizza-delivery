@@ -11,6 +11,12 @@ class ProductSize extends Model {
   file () {
     return this.belongsTo('App/Models/File')
   }
+
+  orders () {
+    return this.belongsToMany('App/Models/Order')
+      .pivotTable('order_sizes')
+      .withPivot(['id'])
+  }
 }
 
 module.exports = ProductSize
