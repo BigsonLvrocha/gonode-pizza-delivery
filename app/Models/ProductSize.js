@@ -4,13 +4,6 @@
 const Model = use('Model')
 
 class ProductSize extends Model {
-  static boot () {
-    super.boot()
-
-    this.addHook('beforeSave', 'ProductSizeHook.checkUniqueMenu')
-    this.addHook('beforeSave', 'ProductSizeHook.checkUniqueCart')
-  }
-
   productType () {
     return this.belongsTo('App/Models/ProductType')
   }

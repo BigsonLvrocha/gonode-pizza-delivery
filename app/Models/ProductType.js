@@ -4,12 +4,6 @@
 const Model = use('Model')
 
 class ProductType extends Model {
-  static boot () {
-    super.boot()
-
-    this.addHook('beforeUpdate', 'ProductTypeHook.checkUniqueCartNameOnUpdate')
-    this.addHook('beforeSave', 'ProductTypeHook.checkUniqueMenuNameOnSave')
-  }
   product () {
     return this.belongsTo('App/Models/Product')
   }
