@@ -8,7 +8,11 @@ class SessionController {
   }
 
   async index ({ response, auth }) {
-    return auth.user
+    return {
+      email: auth.user.email,
+      username: auth.user.username,
+      role: auth.user.role
+    }
   }
 }
 
