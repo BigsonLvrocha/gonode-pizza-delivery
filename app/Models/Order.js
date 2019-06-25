@@ -21,6 +21,20 @@ class Order extends Model {
   static get dates () {
     return super.dates.concat(['deleted_at'])
   }
+
+  static get computed () {
+    return ['total']
+  }
+
+  getTotal (item) {
+    if (this.$relations.sizes) {
+      return this.$relations.sizes.rows.reduce(
+        (acc, current) => acc + current.price,
+        0
+      )
+    }
+    return undefined
+  }
 }
 
 module.exports = Order
