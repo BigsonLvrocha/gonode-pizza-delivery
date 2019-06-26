@@ -41,7 +41,8 @@ class ProductSizeController {
       'menu_name',
       'cart_name',
       'cart_image_display',
-      'file_id'
+      'file_id',
+      'image_scale'
     ])
     const size = await ProductSize.create({
       ...data,
@@ -78,7 +79,8 @@ class ProductSizeController {
       'menu_name',
       'cart_name',
       'cart_image_display',
-      'file_id'
+      'file_id',
+      'image_scale'
     ])
     const size = await ProductSize.findOrFail(params.id)
     size.merge(data)
