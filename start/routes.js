@@ -41,5 +41,6 @@ Route.group(() => {
   Route.post('/user/order', 'OrderController.store')
     .middleware('isAdmin:1')
     .validator('Order')
+  Route.get('/user/order', 'UserOrderContoller.index').middleware('isAdmin:1')
   Route.get('/session', 'SessionController.index')
 }).middleware('auth')
