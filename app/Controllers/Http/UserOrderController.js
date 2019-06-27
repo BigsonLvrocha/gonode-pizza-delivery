@@ -7,6 +7,7 @@ class UserOrderController {
     const orders = Order.query()
       .with('sizes')
       .where('user_id', auth.user.id)
+      .orderBy('created_at', 'desc')
       .fetch()
     return orders
   }
