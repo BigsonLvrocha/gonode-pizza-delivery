@@ -65,7 +65,6 @@ class ProductSizeController {
   async show ({ params, request, response, view }) {
     const size = await ProductSize.findOrFail(params.id)
     await size.load('file')
-    await size.load('productType')
     await size.load('productType.file')
     return size
   }
@@ -91,7 +90,6 @@ class ProductSizeController {
     size.merge(data)
     await size.save()
     await size.load('file')
-    await size.load('productType')
     await size.load('productType.file')
     return size
   }
