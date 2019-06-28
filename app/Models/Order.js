@@ -11,7 +11,7 @@ class Order extends Model {
   sizes () {
     return this.belongsToMany('App/Models/ProductSize')
       .pivotTable('order_sizes')
-      .withPivot(['id'])
+      .withPivot(['id', 'amount'])
   }
 
   static get deleteTimestamp () {
@@ -28,8 +28,9 @@ class Order extends Model {
 
   getTotal (item) {
     if (this.$relations.sizes) {
+      console.log(this.$relations.sizes.rows[0].$relations)
       return this.$relations.sizes.rows.reduce(
-        (acc, current) => acc + current.price,
+        (acc, current) => acc + current.price * current.$relations.pivot.amount,
         0
       )
     }
