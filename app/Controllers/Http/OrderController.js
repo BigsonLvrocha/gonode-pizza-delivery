@@ -67,7 +67,16 @@ class OrderController {
       },
       trx
     )
-    await order.sizes().attach(sizes, () => {}, trx)
+    await order.sizes().attach(
+      sizes.map(item => item.id),
+      row => {
+        const item = sizes.find(a => a.id === row.product_size_id)
+        if (item) {
+          row.amount = item.amount || 1
+        }
+      },
+      trx
+    )
     await trx.commit()
     await Promise.all([order.load('sizes'), order.load('user')])
     return order
