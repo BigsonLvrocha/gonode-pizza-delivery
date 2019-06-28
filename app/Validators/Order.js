@@ -8,7 +8,7 @@ class Order {
       street: 'required',
       district: 'required',
       number: 'required',
-      sizes: 'required|array|idsExists:product_sizes'
+      sizes: 'required|array|noDuplicates:id|idsExists:product_sizes,id,id'
     }
   }
 }
