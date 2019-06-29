@@ -43,5 +43,8 @@
   "string": "{{field}} deve ser uma STRING.",
   "under": "{{field}} deve está abaixo de {{argument.0}}.",
   "unique": "{{field}} já pertence a outro.",
-  "url": "{{field}} deve ser uma url válida."
+  "url": "{{field}} deve ser uma url válida.",
+  "unique_compound": "{{field}} já pertece a outro item do grupo",
+  "ids_exists": "todos os item em {{field}} devem existir",
+  "no_duplicates": "Não deve haver duplicidade em {{field}}"
 }
