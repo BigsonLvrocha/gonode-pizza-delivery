@@ -1,6 +1,12 @@
 'use strict'
 
+const Antl = use('Antl')
+
 class Order {
+  get validateAll () {
+    return true
+  }
+
   get rules () {
     return {
       observations: 'string',
@@ -8,8 +14,12 @@ class Order {
       street: 'required',
       district: 'required',
       number: 'required',
-      sizes: 'required|array|noDuplicates:id|idsExists:product_sizes,id,id'
+      sizes: 'required|array|no_duplicates:id|ids_exists:product_sizes,id,id'
     }
+  }
+
+  get messages () {
+    return Antl.list('validation')
   }
 }
 
